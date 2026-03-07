@@ -1,22 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-const ingredientLabels = {
-  farinha: 'Farinha',
-  sal: 'Sal',
-  reforcador: 'Reforçador',
-  fermento: 'Fermento',
-  agua: 'Água',
-  acucar: 'Açúcar',
-  gordura: 'Gordura',
-  leitePo: 'Leite em pó',
-  manteiga: 'Manteiga',
-  margarina: 'Margarina',
-  leiteIntegral: 'Leite integral',
-  oleo: 'Óleo',
-  ovos: 'Ovos',
-  ovo: 'Ovo',
-};
+import { ingredientTranslations, translations } from '../i18n/translations';
 
 function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
   const ingredients = {};
@@ -63,10 +47,13 @@ function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
   };
 }
 
-function RecipePanel({ bread }) {
+function RecipePanel({ bread, language }) {
   const [flourGrams, setFlourGrams] = useState(20000);
   const [massaMadre, setMassaMadre] = useState(80);
   const [calculation, setCalculation] = useState(null);
+
+  const t = translations[language] || translations.pt;
+  const ingredientLabels = ingredientTranslations[language] || ingredientTranslations.pt;
 
   const handleCalculate = () => {
     setCalculation(calculateIngredients(bread, flourGrams, massaMadre));
@@ -78,15 +65,15 @@ function RecipePanel({ bread }) {
 
   return (
     <section className="glass-card h-full p-6 md:p-8">
-      <p className="text-sm uppercase tracking-[0.2em] text-sky-700/70">Receita Selecionada</p>
+      <p className="text-sm uppercase tracking-[0.2em] text-sky-700/70">{t.selectedRecipe}</p>
       <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{bread.name}</h2>
 
       <div className="mt-6 rounded-2xl border border-white/60 bg-white/60 p-4">
-        <h3 className="text-base font-semibold text-slate-800">Calculadora</h3>
+        <h3 className="text-base font-semibold text-slate-800">{t.calculator}</h3>
 
         <div className="mt-3 grid gap-3 md:grid-cols-2">
           <label className="space-y-1">
-            <span className="text-sm font-medium text-slate-700">Farinha (g)</span>
+            <span className="text-sm font-medium text-slate-700">{t.flour} (g)</span>
             <input
               type="number"
               min="0"
@@ -98,7 +85,7 @@ function RecipePanel({ bread }) {
           </label>
 
           <label className="space-y-1">
-            <span className="text-sm font-medium text-slate-700">Massa madre (g)</span>
+            <span className="text-sm font-medium text-slate-700">{t.massaMadre} (g)</span>
             <input
               type="number"
               min="0"
@@ -115,13 +102,13 @@ function RecipePanel({ bread }) {
           onClick={handleCalculate}
           className="mt-4 rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-700"
         >
-          Calcular
+          {t.calculate}
         </button>
       </div>
 
       {calculation && (
         <div className="mt-5 rounded-2xl border border-white/60 bg-white/60 p-4">
-          <h3 className="text-base font-semibold text-slate-800">Ingredientes</h3>
+          <h3 className="text-base font-semibold text-slate-800">{t.ingredients}</h3>
           <ul className="mt-3 space-y-2">
             {Object.entries(calculation.ingredients).map(([name, ingredient]) => (
               <li key={name} className="flex items-center justify-between rounded-xl bg-white/70 px-3 py-2 text-sm">
@@ -137,40 +124,40 @@ function RecipePanel({ bread }) {
               </li>
             ))}
             <li className="flex items-center justify-between rounded-xl border border-cyan-300/40 bg-cyan-50/70 px-3 py-2 text-sm">
-              <span className="text-cyan-800">Massa madre</span>
+              <span className="text-cyan-800">{t.massaMadre}</span>
               <span className="font-semibold text-cyan-900">{massaMadre.toFixed(1)} g</span>
             </li>
           </ul>
 
           <div className="mt-4 space-y-2 border-t border-white/70 pt-3 text-sm">
             <p className="flex items-center justify-between text-slate-700">
-              <span className="font-medium">Massa total</span>
+              <span className="font-medium">{t.totalDough}</span>
               <span className="font-semibold text-slate-900">{calculation.totalDough.toFixed(1)} g</span>
             </p>
             <p className="flex items-center justify-between text-slate-700">
-              <span className="font-medium">Pães produzidos</span>
+              <span className="font-medium">{t.breadsProduced}</span>
               <span className="font-semibold text-slate-900">{calculation.breads}</span>
             </p>
             <p className="flex items-center justify-between text-slate-700">
-              <span className="font-medium">Divisão por pão</span>
+              <span className="font-medium">{t.divisionPerBread}</span>
               <span className="font-semibold text-slate-900">{bread.breadWeight} g</span>
             </p>
             <p className="flex items-center justify-between text-slate-700">
-              <span className="font-medium">Sobra de massa</span>
+              <span className="font-medium">{t.leftoverDough}</span>
               <span className="font-semibold text-slate-900">{calculation.leftoverDough.toFixed(1)} g</span>
             </p>
           </div>
 
           <div className="mt-3 rounded-xl border border-amber-300/50 bg-amber-50/70 px-3 py-2 text-sm text-amber-900">
-            Massa madre para próxima fornada: {calculation.leftoverDough.toFixed(1)} g.
+            {t.nextBatchStarter}: {calculation.leftoverDough.toFixed(1)} g.
             <br />
-            Guarde essa massa como massa madre para a próxima fornada.
+            {t.nextBatchTip}
           </div>
         </div>
       )}
 
       <div className="mt-5 rounded-2xl border border-white/60 bg-white/60 p-4">
-        <h3 className="text-base font-semibold text-slate-800">Modo de fazer</h3>
+        <h3 className="text-base font-semibold text-slate-800">{t.preparationMode}</h3>
         <ol className="mt-3 list-inside list-decimal space-y-2 text-sm text-slate-700 md:text-base">
           {bread.instructions.map((step) => (
             <li key={step}>{step}</li>
@@ -193,6 +180,7 @@ RecipePanel.propTypes = {
     instructions: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
+  language: PropTypes.oneOf(['pt', 'en', 'es']).isRequired,
 };
 
 export default RecipePanel;
