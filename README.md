@@ -116,6 +116,12 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 ```
+## 🖼️ Onde colocar imagens
+
+- `public/images/breads/` → imagens de pães acessadas por URL direta (ex.: `/images/breads/pao-frances.jpg`).
+- `public/images/ui/` → fundos, ícones e elementos visuais globais.
+- `src/assets/images/` → imagens importadas diretamente nos componentes React.
+
 
 ## 🧮 Lógica de cálculo
 
