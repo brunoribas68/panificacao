@@ -62,7 +62,7 @@ export const recipes = [
       fermento: 1.5,
       leitePo: 4,
       margarina: 6,
-      agua: [52, 54],
+      agua: [52, 56],
     },
     instructions: [
       'Misture os insumos secos.',
