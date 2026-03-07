@@ -11,6 +11,11 @@ const ingredientLabels = {
   gordura: 'Gordura',
   leitePo: 'Leite em pó',
   manteiga: 'Manteiga',
+  margarina: 'Margarina',
+  leiteIntegral: 'Leite integral',
+  oleo: 'Óleo',
+  ovos: 'Ovos',
+  ovo: 'Ovo',
 };
 
 function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
@@ -21,10 +26,31 @@ function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
       return;
     }
 
-    ingredients[name] = flourGrams * (percent / 100);
+    if (Array.isArray(percent)) {
+      ingredients[name] = {
+        isRange: true,
+        percent,
+        min: flourGrams * (percent[0] / 100),
+        max: flourGrams * (percent[1] / 100),
+      };
+      return;
+    }
+
+    ingredients[name] = {
+      isRange: false,
+      percent,
+      grams: flourGrams * (percent / 100),
+    };
   });
 
-  const ingredientSum = Object.values(ingredients).reduce((sum, value) => sum + value, 0);
+  const ingredientSum = Object.values(ingredients).reduce((sum, ingredient) => {
+    if (ingredient.isRange) {
+      return sum + ingredient.max;
+    }
+
+    return sum + ingredient.grams;
+  }, 0);
+
   const totalDough = flourGrams + ingredientSum + massaMadreGrams;
   const breads = recipe.breadWeight > 0 ? Math.floor(totalDough / recipe.breadWeight) : 0;
   const leftoverDough = recipe.breadWeight > 0 ? totalDough % recipe.breadWeight : 0;
@@ -97,12 +123,17 @@ function RecipePanel({ bread }) {
         <div className="mt-5 rounded-2xl border border-white/60 bg-white/60 p-4">
           <h3 className="text-base font-semibold text-slate-800">Ingredientes</h3>
           <ul className="mt-3 space-y-2">
-            {Object.entries(calculation.ingredients).map(([name, grams]) => (
+            {Object.entries(calculation.ingredients).map(([name, ingredient]) => (
               <li key={name} className="flex items-center justify-between rounded-xl bg-white/70 px-3 py-2 text-sm">
                 <span className="text-slate-700">
-                  {ingredientLabels[name] || name} ({bread.ingredients[name]}%)
+                  {ingredientLabels[name] || name}{' '}
+                  {ingredient.isRange ? `(${ingredient.percent[0]}% - ${ingredient.percent[1]}%)` : `(${ingredient.percent}%)`}
                 </span>
-                <span className="font-semibold text-slate-900">{grams.toFixed(1)} g</span>
+                <span className="font-semibold text-slate-900">
+                  {ingredient.isRange
+                    ? `${ingredient.min.toFixed(1)} g - ${ingredient.max.toFixed(1)} g`
+                    : `${ingredient.grams.toFixed(1)} g`}
+                </span>
               </li>
             ))}
             <li className="flex items-center justify-between rounded-xl border border-cyan-300/40 bg-cyan-50/70 px-3 py-2 text-sm">
@@ -153,7 +184,12 @@ function RecipePanel({ bread }) {
 RecipePanel.propTypes = {
   bread: PropTypes.shape({
     breadWeight: PropTypes.number.isRequired,
-    ingredients: PropTypes.objectOf(PropTypes.number).isRequired,
+    ingredients: PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.arrayOf(PropTypes.number),
+      ]),
+    ).isRequired,
     instructions: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
