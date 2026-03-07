@@ -55,6 +55,8 @@ npm run dev
 http://localhost:5173
 ```
 
+> Unidade oficial do cálculo: **gramas (g)**. O campo de farinha sempre recebe gramas (ex.: 10000 = 10kg).
+
 ## 🐳 Rodando com Docker
 
 ### Opção 1: Docker Compose (recomendado)
@@ -121,13 +123,17 @@ Para cada ingrediente:
 
 ```text
 ingrediente (g) = farinhaEmGramas * (percentual / 100)
+
+Para hidratação em faixa:
+agua_min = farinhaEmGramas * (percentualMin / 100)
+agua_max = farinhaEmGramas * (percentualMax / 100)
 ```
 
 Depois:
 
 - soma-se a **massa madre** informada manualmente;
-- calcula-se o **peso total da massa**;
-- calcula-se o **número de pães produzidos** com base no peso unitário (`yieldWeight`) da receita.
+- calcula-se o **peso total da massa em gramas**;
+- calcula-se o **número de pães produzidos** com base no peso unitário (`breadWeight`) da receita.
 
 ## 🍞 Tipos de pão disponíveis
 
