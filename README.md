@@ -120,7 +120,7 @@ docker-compose.yml
 Para cada ingrediente:
 
 ```text
-ingrediente (g) = farinhaKg * 1000 * (percentual / 100)
+ingrediente (g) = farinhaEmGramas * (percentual / 100)
 ```
 
 Depois:
