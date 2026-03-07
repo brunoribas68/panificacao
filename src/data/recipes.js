@@ -1,8 +1,10 @@
+const imageBase = `${import.meta.env.BASE_URL}images/breads/`;
+
 export const recipes = [
   {
     id: 'pao-frances',
     name: 'Pão Francês',
-    image: '/images/breads/Pao-Frances.png',
+    image: `${imageBase}Pao-Frances.png`,
     breadWeight: 70,
     ingredients: {
       farinha: 100,
@@ -23,7 +25,7 @@ export const recipes = [
   {
     id: 'pao-caseiro',
     name: 'Pão Caseiro',
-    image: '/images/breads/Pao-Caseiro.png',
+    image: `${imageBase}Pao-Caseiro.png`,
     breadWeight: 60,
     ingredients: {
       farinha: 100,
@@ -45,7 +47,7 @@ export const recipes = [
   {
     id: 'pao-de-forma',
     name: 'Pão de Forma',
-    image: '/images/breads/Pao-de-Forma.png',
+    image: `${imageBase}Pao-de-Forma.png`,
     breadWeight: 500,
     ingredients: {
       farinha: 100,
@@ -67,7 +69,7 @@ export const recipes = [
   {
     id: 'pao-de-hamburguer',
     name: 'Pão de Hambúrguer',
-    image: '/images/breads/Pao-de-Hamburguer.png',
+    image: `${imageBase}Pao-de-Hamburguer.png`,
     breadWeight: 90,
     ingredients: {
       farinha: 100,
@@ -89,7 +91,7 @@ export const recipes = [
   {
     id: 'pao-de-hot-dog',
     name: 'Pão de Hot Dog',
-    image: '/images/breads/Pao-de-Hot-Dog.png',
+    image: `${imageBase}Pao-de-Hot-Dog.png`,
     breadWeight: 55,
     ingredients: {
       farinha: 100,
@@ -111,7 +113,7 @@ export const recipes = [
   {
     id: 'pao-de-leite',
     name: 'Pão de Leite',
-    image: '/images/breads/Pao-de-Leite.png',
+    image: `${imageBase}Pao-de-Leite.png`,
     breadWeight: 50,
     ingredients: {
       farinha: 100,
@@ -133,7 +135,7 @@ export const recipes = [
   {
     id: 'pao-sovado',
     name: 'Pão Sovado',
-    image: '/images/breads/Pao-Sovado.png',
+    image: `${imageBase}Pao-Sovado.png`,
     breadWeight: 65,
     ingredients: {
       farinha: 100,
@@ -154,7 +156,7 @@ export const recipes = [
   {
     id: 'pao-vienense',
     name: 'Pão Vienense',
-    image: '/images/breads/Pao-Viennense.png',
+    image: `${imageBase}Pao-Viennense.png`,
     breadWeight: 75,
     ingredients: {
       farinha: 100,
@@ -175,7 +177,7 @@ export const recipes = [
   {
     id: 'pao-sirio',
     name: 'Pão Sírio',
-    image: '/images/breads/Pao-Sirio.png',
+    image: `${imageBase}Pao-Sirio.png`,
     breadWeight: 65,
     ingredients: {
       farinha: 100,
@@ -196,7 +198,7 @@ export const recipes = [
   {
     id: 'pao-bola',
     name: 'Pão Bola',
-    image: '/images/breads/Pao-Bola.png',
+    image: `${imageBase}Pao-Bola.png`,
     breadWeight: 80,
     ingredients: {
       farinha: 100,
@@ -217,7 +219,7 @@ export const recipes = [
   {
     id: 'pao-manteiga',
     name: 'Pão Manteiga',
-    image: '/images/breads/Pao-Manteiga.png',
+    image: `${imageBase}Pao-Manteiga.png`,
     breadWeight: 70,
     ingredients: {
       farinha: 100,
