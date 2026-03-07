@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import BreadMenu from '../components/BreadMenu';
 import RecipePanel from '../components/RecipePanel';
 import { recipes } from '../data/recipes';
-import { translations } from '../i18n/translations';
+import { translateBreadName, translations } from '../i18n/translations';
 
 const languages = [
   { code: 'pt', flag: '🇧🇷', label: 'Português' },
@@ -20,6 +20,11 @@ function HomePage() {
   );
 
   const t = translations[language] || translations.pt;
+
+  const localizedBreads = useMemo(
+    () => recipes.map((bread) => ({ ...bread, name: translateBreadName(bread, language) })),
+    [language],
+  );
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-7xl items-center justify-center px-4 py-10 md:px-8">
@@ -49,7 +54,7 @@ function HomePage() {
 
         <section className="grid gap-5 lg:grid-cols-[1.2fr_1fr]">
           <BreadMenu
-            breads={recipes}
+            breads={localizedBreads}
             selectedBreadId={selectedBreadId}
             onSelectBread={setSelectedBreadId}
             menuTitle={t.menuBreads}

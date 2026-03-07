@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ingredientTranslations, translations } from '../i18n/translations';
+import { ingredientTranslations, translateBreadName, translateInstruction, translations } from '../i18n/translations';
 
 function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
   const ingredients = {};
@@ -54,6 +54,7 @@ function RecipePanel({ bread, language }) {
 
   const t = translations[language] || translations.pt;
   const ingredientLabels = ingredientTranslations[language] || ingredientTranslations.pt;
+  const translatedBreadName = translateBreadName(bread, language);
 
   const handleCalculate = () => {
     setCalculation(calculateIngredients(bread, flourGrams, massaMadre));
@@ -66,7 +67,7 @@ function RecipePanel({ bread, language }) {
   return (
     <section className="glass-card h-full p-6 md:p-8">
       <p className="text-sm uppercase tracking-[0.2em] text-sky-700/70">{t.selectedRecipe}</p>
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{bread.name}</h2>
+      <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">{translatedBreadName}</h2>
 
       <div className="mt-6 rounded-2xl border border-white/60 bg-white/60 p-4">
         <h3 className="text-base font-semibold text-slate-800">{t.calculator}</h3>
@@ -160,7 +161,7 @@ function RecipePanel({ bread, language }) {
         <h3 className="text-base font-semibold text-slate-800">{t.preparationMode}</h3>
         <ol className="mt-3 list-inside list-decimal space-y-2 text-sm text-slate-700 md:text-base">
           {bread.instructions.map((step) => (
-            <li key={step}>{step}</li>
+            <li key={step}>{translateInstruction(step, language)}</li>
           ))}
         </ol>
       </div>
