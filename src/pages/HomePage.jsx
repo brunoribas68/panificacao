@@ -16,7 +16,7 @@ function HomePage() {
       <div className="w-full rounded-[2rem] border border-white/60 bg-white/40 p-4 shadow-[0_30px_80px_rgba(15,23,42,0.15)] backdrop-blur-2xl md:p-6">
         <header className="mb-6 text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-sky-700/70">Panificação Calculator</p>
-          <h1 className="mt-2 text-3xl font-extrabold text-slate-900 md:text-5xl">Selecione um pão e veja a receita</h1>
+          <h1 className="mt-2 text-3xl font-extrabold text-slate-900 md:text-5xl">Selecione um pão e veja a ficha técnica</h1>
         </header>
 
         <section className="grid gap-5 lg:grid-cols-[1.2fr_1fr]">
