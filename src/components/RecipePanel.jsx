@@ -27,11 +27,13 @@ function calculateIngredients(recipe, flourGrams, massaMadreGrams) {
   const ingredientSum = Object.values(ingredients).reduce((sum, value) => sum + value, 0);
   const totalDough = flourGrams + ingredientSum + massaMadreGrams;
   const breads = recipe.breadWeight > 0 ? Math.floor(totalDough / recipe.breadWeight) : 0;
+  const leftoverDough = recipe.breadWeight > 0 ? totalDough % recipe.breadWeight : 0;
 
   return {
     ingredients,
     totalDough,
     breads,
+    leftoverDough,
   };
 }
 
@@ -97,7 +99,9 @@ function RecipePanel({ bread }) {
           <ul className="mt-3 space-y-2">
             {Object.entries(calculation.ingredients).map(([name, grams]) => (
               <li key={name} className="flex items-center justify-between rounded-xl bg-white/70 px-3 py-2 text-sm">
-                <span className="text-slate-700">{ingredientLabels[name] || name}</span>
+                <span className="text-slate-700">
+                  {ingredientLabels[name] || name} ({bread.ingredients[name]}%)
+                </span>
                 <span className="font-semibold text-slate-900">{grams.toFixed(1)} g</span>
               </li>
             ))}
@@ -113,9 +117,23 @@ function RecipePanel({ bread }) {
               <span className="font-semibold text-slate-900">{calculation.totalDough.toFixed(1)} g</span>
             </p>
             <p className="flex items-center justify-between text-slate-700">
-              <span className="font-medium">Pães</span>
+              <span className="font-medium">Pães produzidos</span>
               <span className="font-semibold text-slate-900">{calculation.breads}</span>
             </p>
+            <p className="flex items-center justify-between text-slate-700">
+              <span className="font-medium">Divisão por pão</span>
+              <span className="font-semibold text-slate-900">{bread.breadWeight} g</span>
+            </p>
+            <p className="flex items-center justify-between text-slate-700">
+              <span className="font-medium">Sobra de massa</span>
+              <span className="font-semibold text-slate-900">{calculation.leftoverDough.toFixed(1)} g</span>
+            </p>
+          </div>
+
+          <div className="mt-3 rounded-xl border border-amber-300/50 bg-amber-50/70 px-3 py-2 text-sm text-amber-900">
+            Massa madre para próxima fornada: {calculation.leftoverDough.toFixed(1)} g.
+            <br />
+            Guarde essa massa como massa madre para a próxima fornada.
           </div>
         </div>
       )}
