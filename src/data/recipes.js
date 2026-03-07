@@ -36,7 +36,7 @@ export const recipes = [
             acucar: 6,
             fermento: 1.5,
             gordura: 3,
-            agua: 54,
+            agua: [50,54],
         },
         instructions: [
             'Misture farinha, sal, açúcar e fermento.',
