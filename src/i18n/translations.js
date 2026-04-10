@@ -119,6 +119,7 @@ export const breadNameTranslations = {
     'pao-sirio': 'Pão Sírio',
     'pao-bola': 'Pão Bola',
     'pao-manteiga': 'Pão Manteiga',
+    'pao-integral': 'Pão Integral',
   },
   en: {
     'pao-frances': 'French Bread',
@@ -132,6 +133,7 @@ export const breadNameTranslations = {
     'pao-sirio': 'Pita Bread',
     'pao-bola': 'Round Bread',
     'pao-manteiga': 'Butter Bread',
+    'pao-integral': 'Whole Wheat Bread',
   },
   es: {
     'pao-frances': 'Pan Francés',
@@ -145,6 +147,7 @@ export const breadNameTranslations = {
     'pao-sirio': 'Pan Árabe',
     'pao-bola': 'Pan Bola',
     'pao-manteiga': 'Pan de Mantequilla',
+    'pao-integral': 'Pan Integral',
   },
 };
 
