@@ -76,11 +76,13 @@ function RecipePanel({ bread, language }) {
           <label className="space-y-1">
             <span className="text-sm font-medium text-slate-700">{t.flour} (g)</span>
             <input
-              type="number"
-              min="0"
-              step="1"
-              value={flourGrams}
-              onChange={(event) => setFlourGrams(Number(event.target.value) || 0)}
+              type="text"
+              inputMode="numeric"
+              value={flourGrams || ''}
+              onChange={(event) => {
+                const val = event.target.value.replace(/\D/g, '');
+                setFlourGrams(val === '' ? 0 : Number(val));
+              }}
               className="input-glass"
             />
           </label>
@@ -88,11 +90,13 @@ function RecipePanel({ bread, language }) {
           <label className="space-y-1">
             <span className="text-sm font-medium text-slate-700">{t.massaMadre} (g)</span>
             <input
-              type="number"
-              min="0"
-              step="1"
-              value={massaMadre}
-              onChange={(event) => setMassaMadre(Number(event.target.value) || 0)}
+              type="text"
+              inputMode="numeric"
+              value={massaMadre || ''}
+              onChange={(event) => {
+                const val = event.target.value.replace(/\D/g, '');
+                setMassaMadre(val === '' ? 0 : Number(val));
+              }}
               className="input-glass"
             />
           </label>

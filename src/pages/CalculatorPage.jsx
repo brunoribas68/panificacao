@@ -41,11 +41,13 @@ function CalculatorPage() {
           <label className="space-y-2">
             <span className="text-sm font-medium text-slate-700">Quantidade de farinha ou pré-mistura (g)</span>
             <input
-              type="number"
-              min="0"
-              step="1"
-              value={flourGrams}
-              onChange={(event) => setFlourGrams(Number(event.target.value) || 0)}
+              type="text"
+              inputMode="numeric"
+              value={flourGrams || ''}
+              onChange={(event) => {
+                const val = event.target.value.replace(/\D/g, '');
+                setFlourGrams(val === '' ? 0 : Number(val));
+              }}
               className="input-glass"
             />
           </label>
@@ -53,11 +55,13 @@ function CalculatorPage() {
           <label className="space-y-2">
             <span className="text-sm font-medium text-slate-700">Massa madre (g)</span>
             <input
-              type="number"
-              min="0"
-              step="1"
-              value={massaMadre}
-              onChange={(event) => setMassaMadre(Number(event.target.value) || 0)}
+              type="text"
+              inputMode="numeric"
+              value={massaMadre || ''}
+              onChange={(event) => {
+                const val = event.target.value.replace(/\D/g, '');
+                setMassaMadre(val === '' ? 0 : Number(val));
+              }}
               className="input-glass"
             />
           </label>

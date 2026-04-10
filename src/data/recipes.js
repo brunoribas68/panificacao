@@ -278,4 +278,29 @@ export const recipes = [
       'Asse em forno pré-aquecido a 180°C por cerca de 40 minutos.',
     ],
   },
+
+  {
+    id: 'pao-integral',
+    name: 'Pão Integral',
+    image: `${imageBase}Pao-Integral.png`,
+    breadWeight: 650,
+    ingredients: {
+      farinha: 100,
+      sal: 2,
+      acucar: 4,
+      fermento: 1.5,
+      margarina: 4,
+      agua: [62, 66],
+    },
+    instructions: [
+      'Misture os ingredientes secos.',
+      'Em seguida coloque os ingredientes líquidos e pastosos.',
+      'Sove até chegar ao ponto de véu.',
+      'Divida a massa em peças de 650g.',
+      'Boleie e modele.',
+      'Leve à forma.',
+      'Deixe crescer.',
+      'Asse em forno pré-aquecido a 180°C por cerca de 40 minutos.',
+    ],
+  },
 ];
