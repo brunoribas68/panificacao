@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { recipes } from '../data/recipes';
-import { ingredientTranslations, translateBreadName, translations } from '../i18n/translations';
+import { ingredientTranslations, translateBreadName, translateInstruction, translations } from '../i18n/translations';
 
 const LANGUAGES = [
   { code: 'pt', flag: '🇧🇷', label: 'Português' },
@@ -44,6 +44,7 @@ function HomePage() {
   const [flourInput, setFlourInput] = useState('20000');
   const [massaMadreInput, setMassaMadreInput] = useState('0');
   const [language, setLanguage] = useState('pt');
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const t = translations[language] || translations.pt;
   const ingredientLabels = ingredientTranslations[language] || ingredientTranslations.pt;
@@ -79,6 +80,7 @@ function HomePage() {
   };
 
   return (
+    <>
     <div className="flex h-screen flex-col overflow-hidden bg-slate-50 md:grid md:grid-cols-2 md:grid-rows-2">
 
       {/* TOP / Desktop Left-Top: Inputs */}
@@ -165,6 +167,14 @@ function HomePage() {
             <p className="mt-0.5 text-2xl font-bold">{calc.leftoverDough.toFixed(0)} g</p>
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setShowInstructions(true)}
+          className="mt-1 flex items-center gap-2 rounded-xl bg-white/20 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/30 active:bg-white/40"
+        >
+          📋 {t.preparationMode}
+        </button>
       </section>
 
       {/* BOTTOM / Desktop Left-Bottom: Ingredients */}
@@ -195,6 +205,43 @@ function HomePage() {
       </section>
 
     </div>
+
+      {/* Instructions modal */}
+      {showInstructions && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 md:items-center"
+          onClick={() => setShowInstructions(false)}
+        >
+          <div
+            className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-6 shadow-2xl md:rounded-3xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-base font-bold text-slate-900">{t.preparationMode} — {translateBreadName(selectedBread, language)}</h2>
+              <button
+                type="button"
+                onClick={() => setShowInstructions(false)}
+                className="rounded-xl bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-600 hover:bg-slate-200"
+              >
+                ✕
+              </button>
+            </div>
+            <ol className="space-y-3">
+              {selectedBread.instructions.map((step, i) => (
+                <li key={step} className="flex gap-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sky-600 text-xs font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm leading-relaxed text-slate-700">{translateInstruction(step, language)}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
