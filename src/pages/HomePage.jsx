@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BreadMenu from '../components/BreadMenu';
 import RecipePanel from '../components/RecipePanel';
 import { recipes } from '../data/recipes';
@@ -50,6 +51,14 @@ function HomePage() {
           </div>
           <p className="text-sm uppercase tracking-[0.3em] text-sky-700/70">{t.appSubtitle}</p>
           <h1 className="mt-2 text-3xl font-extrabold text-slate-900 md:text-5xl">{t.appTitle}</h1>
+          <div className="mt-4 flex justify-center">
+            <Link
+              to="/ficha-tecnica-integral"
+              className="inline-flex items-center gap-2 rounded-xl border border-amber-300/70 bg-amber-50/70 px-4 py-2 text-sm font-semibold text-amber-800 transition hover:bg-amber-100/80"
+            >
+              🌾 Ficha Técnica — Pão Integral Personalizado
+            </Link>
+          </div>
         </header>
 
         <section className="grid gap-5 lg:grid-cols-[1.2fr_1fr]">
