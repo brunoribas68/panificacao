@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import FichaTecnicaPage from './pages/FichaTecnicaPage';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="pointer-events-none absolute bottom-10 left-10 h-72 w-72 rounded-full bg-violet-200/40 blur-3xl" />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/ficha-tecnica-integral" element={<FichaTecnicaPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
