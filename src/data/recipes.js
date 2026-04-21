@@ -161,11 +161,14 @@ export const recipes = [
     breadWeight: 550,
    ingredients: {
     farinha: 100,
-    agua: [55, 60],
-    acucar: 5,
+    agua: [50, 54],
+    acucar: 8,
     sal: 2,
+    reforcador: 1,
     gordura: 5,
     fermento: 1.5,
+    leitePo: 4,
+    margarina: 8
   },
     instructions: [
       'Misture os insumos secos.',
