@@ -165,7 +165,6 @@ export const recipes = [
     acucar: 8,
     sal: 2,
     reforcador: 1,
-    gordura: 5,
     fermento: 1.5,
     leitePo: 4,
     margarina: 8
