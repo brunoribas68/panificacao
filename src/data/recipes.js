@@ -307,7 +307,7 @@ export const recipes = [
   {
     id: 'pao-australiano',
     name: 'Pão Australiano',
-    image: `${imageBase}Pao-Caseiro.png`,
+    image: `${imageBase}Pao-Australiano.png`,
     breadWeight: 70,
     ingredients: {
       farinha: 100,
