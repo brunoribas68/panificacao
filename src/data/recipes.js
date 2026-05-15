@@ -329,7 +329,7 @@ export const recipes = [
       'Divida a massa em porções de 70g e modele.',
       'Passe no fubá amarelo para finalização.',
       'Deixe fermentar.',
-      'Asse conforme o padrão da produção.',
+      'Asse em forno pré-aquecido a 180°C por cerca de 40 minutos.',
     ],
   },
 ];
