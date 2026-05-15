@@ -71,6 +71,13 @@ export const ingredientTranslations = {
     oleo: 'Óleo',
     ovos: 'Ovos',
     ovo: 'Ovo',
+    acucarMascavo: 'Açúcar mascavo',
+    cacau: 'Cacau',
+    chocolate50: 'Chocolate 50%',
+    fermentoFresco: 'Fermento fresco',
+    fubaAmarelo: 'Fubá amarelo',
+    melaco: 'Melaço',
+    melhorador: 'Melhorador (Reforçador)',
   },
   en: {
     farinha: 'Flour',
@@ -87,6 +94,13 @@ export const ingredientTranslations = {
     oleo: 'Oil',
     ovos: 'Eggs',
     ovo: 'Egg',
+    acucarMascavo: 'Brown sugar',
+    cacau: 'Cocoa powder',
+    chocolate50: '50% chocolate',
+    fermentoFresco: 'Fresh yeast',
+    fubaAmarelo: 'Yellow cornmeal',
+    melaco: 'Molasses',
+    melhorador: 'Dough improver (Strengthener)',
   },
   es: {
     farinha: 'Harina',
@@ -103,6 +117,13 @@ export const ingredientTranslations = {
     oleo: 'Aceite',
     ovos: 'Huevos',
     ovo: 'Huevo',
+    acucarMascavo: 'Azúcar moreno',
+    cacau: 'Cacao en polvo',
+    chocolate50: 'Chocolate 50%',
+    fermentoFresco: 'Levadura fresca',
+    fubaAmarelo: 'Harina de maíz amarilla',
+    melaco: 'Melaza',
+    melhorador: 'Mejorador (Reforzador)',
   },
 };
 
@@ -120,6 +141,7 @@ export const breadNameTranslations = {
     'pao-bola': 'Pão Bola',
     'pao-manteiga': 'Pão Manteiga',
     'pao-integral': 'Pão Integral',
+    'pao-australiano': 'Pão Australiano',
   },
   en: {
     'pao-frances': 'French Bread',
@@ -134,6 +156,7 @@ export const breadNameTranslations = {
     'pao-bola': 'Round Bread',
     'pao-manteiga': 'Butter Bread',
     'pao-integral': 'Whole Wheat Bread',
+    'pao-australiano': 'Australian Bread',
   },
   es: {
     'pao-frances': 'Pan Francés',
@@ -148,6 +171,7 @@ export const breadNameTranslations = {
     'pao-bola': 'Pan Bola',
     'pao-manteiga': 'Pan de Mantequilla',
     'pao-integral': 'Pan Integral',
+    'pao-australiano': 'Pan Australiano',
   },
 };
 
@@ -187,6 +211,9 @@ export const instructionTranslations = {
     'Asse conforme o padrão da produção, em forno bem quente para inflar.': 'Bake according to production standard in a very hot oven so they puff up.',
     'Divida a massa em peças de 300g.': 'Divide the dough into 300 g pieces.',
     'Bata até atingir o ponto de véu.': 'Beat until the dough reaches the windowpane stage.',
+    'Em seguida adicione os líquidos e a manteiga.': 'Then add the liquids and the butter.',
+    'Divida a massa em porções de 70g e modele.': 'Divide the dough into 70 g portions and shape them.',
+    'Passe no fubá amarelo para finalização.': 'Coat with yellow cornmeal to finish.',
   },
   es: {
     'Misture os insumos secos.': 'Mezcla los ingredientes secos.',
@@ -223,6 +250,9 @@ export const instructionTranslations = {
     'Asse conforme o padrão da produção, em forno bem quente para inflar.': 'Hornea según el estándar de producción, en horno muy caliente para inflar.',
     'Divida a massa em peças de 300g.': 'Divide la masa en piezas de 300 g.',
     'Bata até atingir o ponto de véu.': 'Bate hasta alcanzar el punto de velo.',
+    'Em seguida adicione os líquidos e a manteiga.': 'Luego agrega los líquidos y la mantequilla.',
+    'Divida a massa em porções de 70g e modele.': 'Divide la masa en porciones de 70 g y dales forma.',
+    'Passe no fubá amarelo para finalização.': 'Pásalo por harina de maíz amarilla para finalizar.',
   },
 };
 
@@ -238,4 +268,3 @@ export const translateInstruction = (instruction, language) => {
 
   return instructionTranslations[language]?.[instruction] || instruction;
 };
-
