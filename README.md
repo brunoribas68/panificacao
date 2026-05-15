@@ -151,6 +151,7 @@ Depois:
 - Pão Sovado
 - Pão Vienense
 - Pão Sírio
+- Pão Australiano
 
 ## 🎨 Interface
 

@@ -303,4 +303,33 @@ export const recipes = [
       'Asse em forno pré-aquecido a 180°C por cerca de 40 minutos.',
     ],
   },
+
+  {
+    id: 'pao-australiano',
+    name: 'Pão Australiano',
+    image: `${imageBase}Pao-Caseiro.png`,
+    breadWeight: 70,
+    ingredients: {
+      farinha: 100,
+      agua: 60,
+      acucarMascavo: 8,
+      sal: 2,
+      chocolate50: 10,
+      cacau: 0.6,
+      melhorador: 1,
+      manteiga: 10,
+      fermentoFresco: 3,
+      melaco: 5,
+      fubaAmarelo: 20,
+    },
+    instructions: [
+      'Misture os ingredientes secos.',
+      'Em seguida adicione os líquidos e a manteiga.',
+      'Sove até atingir o ponto de véu.',
+      'Divida a massa em porções de 70g e modele.',
+      'Passe no fubá amarelo para finalização.',
+      'Deixe fermentar.',
+      'Asse conforme o padrão da produção.',
+    ],
+  },
 ];
