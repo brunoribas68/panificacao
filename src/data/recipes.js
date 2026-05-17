@@ -344,9 +344,9 @@ export const recipes = [
       fermento: 0.2,
     },
     instructions: [
-      'Misture a farinha com 700g da água até não restar farinha seca.',
+      'Misture a farinha com aproximadamente 70% da água até não restar farinha seca.',
       'Deixe em autólise por 1 hora.',
-      'Adicione o fermento, o sal e o restante da água.',
+      'Adicione o fermento, o sal e a água restante (aproximadamente 4%).',
       'Misture apenas até incorporar, sem sovar excessivamente.',
       'Faça 4 dobras com intervalos de 30 minutos.',
       'Após as dobras, deixe a massa fermentar até crescer aproximadamente 50%.',
