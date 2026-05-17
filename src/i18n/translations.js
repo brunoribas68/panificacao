@@ -145,6 +145,7 @@ export const breadNameTranslations = {
     'pao-manteiga': 'Pão Manteiga',
     'pao-integral': 'Pão Integral',
     'pao-australiano': 'Pão Australiano',
+    'pao-artesanal-alveolado': 'Pão Artesanal Alveolado',
   },
   en: {
     'pao-frances': 'French Bread',
@@ -160,6 +161,7 @@ export const breadNameTranslations = {
     'pao-manteiga': 'Butter Bread',
     'pao-integral': 'Whole Wheat Bread',
     'pao-australiano': 'Australian Bread',
+    'pao-artesanal-alveolado': 'Artisan Open-Crumb Bread',
   },
   es: {
     'pao-frances': 'Pan Francés',
@@ -175,6 +177,7 @@ export const breadNameTranslations = {
     'pao-manteiga': 'Pan de Mantequilla',
     'pao-integral': 'Pan Integral',
     'pao-australiano': 'Pan Australiano',
+    'pao-artesanal-alveolado': 'Pan Artesanal Alveolado',
   },
 };
 
