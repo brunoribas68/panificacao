@@ -105,13 +105,23 @@ docker run --rm -p 5173:5173 panificacao-app
 src/
   components/
     BreadCard.jsx
+    BreadMenu.jsx
     Calculator.jsx
+    RecipePanel.jsx
   data/
     recipes.js
+  i18n/
+    translations.js
   pages/
     Home.jsx
+    HomePage.jsx
+    FichaTecnicaPage.jsx
     CalculatorPage.jsx
   App.jsx
+public/
+  images/
+    breads/
+    ui/
 Dockerfile
 docker-compose.yml
 .dockerignore
@@ -145,13 +155,18 @@ Depois:
 
 - Pão Francês
 - Pão Caseiro
-- Pão Hot Dog
-- Pão Hambúrguer
+- Pão de Forma
+- Pão de Hambúrguer
+- Pão de Hot Dog
 - Pão de Leite
 - Pão Sovado
 - Pão Vienense
 - Pão Sírio
+- Pão Bola
+- Pão Manteiga
+- Pão Integral
 - Pão Australiano
+- Pão Artesanal Alveolado
 
 ## 🎨 Interface
 
