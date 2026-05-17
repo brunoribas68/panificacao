@@ -86,15 +86,6 @@ function HomePage() {
     [selectedBread, flourGrams, massaMadreGrams],
   );
 
-  const recalculateFlourByTargetBreads = (targetBreads) => {
-    if (!selectedBread || targetBreads <= 0) return;
-
-    const flourFactor = calculateFlourFactor(selectedBread);
-    const requiredTotalDough = targetBreads * selectedBread.breadWeight;
-    const requiredFlour = Math.max(0, Math.ceil((requiredTotalDough - massaMadreGrams) / flourFactor));
-    setFlourInput(String(requiredFlour));
-  };
-
   const handleNumericInput = (setter) => (e) => {
     const val = e.target.value.replace(/\D/g, '');
     setter(val);
@@ -103,7 +94,10 @@ function HomePage() {
   useEffect(() => {
     const targetBreads = Number(targetBreadsInput);
     if (Number.isFinite(targetBreads) && targetBreads > 0) {
-      recalculateFlourByTargetBreads(targetBreads);
+      const flourFactor = calculateFlourFactor(selectedBread);
+      const requiredTotalDough = targetBreads * selectedBread.breadWeight;
+      const requiredFlour = Math.max(0, Math.ceil((requiredTotalDough - massaMadreGrams) / flourFactor));
+      setFlourInput(String(requiredFlour));
     }
   }, [targetBreadsInput, selectedBread, massaMadreGrams]);
 
@@ -180,11 +174,6 @@ function HomePage() {
               onChange={(event) => {
                 const val = event.target.value.replace(/\D/g, '');
                 setTargetBreadsInput(val);
-
-                const targetBreads = Number(val);
-                if (Number.isFinite(targetBreads) && targetBreads > 0) {
-                  recalculateFlourByTargetBreads(targetBreads);
-                }
               }}
               className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
