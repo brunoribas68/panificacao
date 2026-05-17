@@ -91,6 +91,13 @@ function HomePage() {
     setter(val);
   };
 
+  const handleFlourInputChange = (event) => {
+    handleNumericInput(setFlourInput)(event);
+    setTargetBreadsInput('');
+  };
+
+  const handleTargetBreadsInputChange = handleNumericInput(setTargetBreadsInput);
+
   useEffect(() => {
     const targetBreads = Number(targetBreadsInput);
     if (Number.isFinite(targetBreads) && targetBreads > 0) {
@@ -148,10 +155,7 @@ function HomePage() {
               type="text"
               inputMode="numeric"
               value={flourInput}
-              onChange={(e) => {
-                handleNumericInput(setFlourInput)(e);
-                setTargetBreadsInput('');
-              }}
+              onChange={handleFlourInputChange}
               className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </label>
@@ -171,10 +175,7 @@ function HomePage() {
               type="text"
               inputMode="numeric"
               value={targetBreadsInput}
-              onChange={(event) => {
-                const val = event.target.value.replace(/\D/g, '');
-                setTargetBreadsInput(val);
-              }}
+              onChange={handleTargetBreadsInputChange}
               className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </label>
