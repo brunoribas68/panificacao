@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { recipes } from '../data/recipes';
 import { ingredientTranslations, translateBreadName, translateInstruction, translations } from '../i18n/translations';
@@ -39,10 +39,22 @@ function calcular(recipe, flourGrams, massaMadreGrams) {
   return { ingredients, totalDough, breads, leftoverDough };
 }
 
+function calculateFlourFactor(recipe) {
+  if (!recipe) return 1;
+
+  const percentSum = Object.entries(recipe.ingredients).reduce((sum, [name, percent]) => {
+    if (name === 'farinha') return sum;
+    return sum + (Array.isArray(percent) ? percent[1] : percent);
+  }, 0);
+
+  return 1 + (percentSum / 100);
+}
+
 function HomePage() {
   const [selectedBreadId, setSelectedBreadId] = useState(recipes[0].id);
   const [flourInput, setFlourInput] = useState('20000');
   const [massaMadreInput, setMassaMadreInput] = useState('0');
+  const [targetBreadsInput, setTargetBreadsInput] = useState('');
   const [language, setLanguage] = useState('pt');
   const [showInstructions, setShowInstructions] = useState(false);
 
@@ -78,6 +90,23 @@ function HomePage() {
     const val = e.target.value.replace(/\D/g, '');
     setter(val);
   };
+
+  const handleFlourInputChange = (event) => {
+    handleNumericInput(setFlourInput)(event);
+    setTargetBreadsInput('');
+  };
+
+  const handleTargetBreadsInputChange = handleNumericInput(setTargetBreadsInput);
+
+  useEffect(() => {
+    const targetBreads = Number(targetBreadsInput);
+    if (Number.isFinite(targetBreads) && targetBreads > 0) {
+      const flourFactor = calculateFlourFactor(selectedBread);
+      const requiredTotalDough = targetBreads * selectedBread.breadWeight;
+      const requiredFlour = Math.max(0, Math.ceil((requiredTotalDough - massaMadreGrams) / flourFactor));
+      setFlourInput(String(requiredFlour));
+    }
+  }, [targetBreadsInput, selectedBread, massaMadreGrams]);
 
   return (
     <>
@@ -119,14 +148,14 @@ function HomePage() {
           ))}
         </select>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
           <label className="flex flex-col gap-1">
             <span className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.flour} (g)</span>
             <input
               type="text"
               inputMode="numeric"
               value={flourInput}
-              onChange={handleNumericInput(setFlourInput)}
+              onChange={handleFlourInputChange}
               className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </label>
@@ -137,6 +166,16 @@ function HomePage() {
               inputMode="numeric"
               value={massaMadreInput}
               onChange={handleNumericInput(setMassaMadreInput)}
+              className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
+            />
+          </label>
+          <label className="flex flex-col gap-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.targetBreads}</span>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={targetBreadsInput}
+              onChange={handleTargetBreadsInputChange}
               className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xl font-bold text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
             />
           </label>
