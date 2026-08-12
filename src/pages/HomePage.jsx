@@ -110,7 +110,7 @@ function HomePage() {
 
   return (
     <>
-    <div className="flex h-screen flex-col overflow-hidden bg-slate-50 md:grid md:grid-cols-2 md:grid-rows-2">
+    <div className="flex min-h-dvh flex-col bg-slate-50 md:h-screen md:grid md:grid-cols-2 md:grid-rows-2 md:overflow-hidden">
 
       {/* TOP / Desktop Left-Top: Inputs */}
       <section className="flex-none border-b border-slate-200 bg-white px-4 pb-3 pt-3 md:col-start-1 md:row-start-1 md:overflow-y-auto md:border-b-0 md:border-r">
@@ -210,7 +210,7 @@ function HomePage() {
         <button
           type="button"
           onClick={() => setShowInstructions(true)}
-          className="mt-1 flex items-center gap-2 rounded-xl bg-white/20 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/30 active:bg-white/40"
+          className="mt-1 flex w-full max-w-sm items-center justify-center gap-2 rounded-xl bg-white/20 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/30 active:bg-white/40"
         >
           📋 {t.preparationMode}
         </button>
@@ -254,11 +254,11 @@ function HomePage() {
           onClick={() => setShowInstructions(false)}
         >
           <div
-            className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-6 shadow-2xl md:rounded-3xl"
+            className="max-h-[85dvh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl md:max-h-[80vh] md:rounded-3xl md:p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-base font-bold text-slate-900">{t.preparationMode} — {translateBreadName(selectedBread, language)}</h2>
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <h2 className="text-sm font-bold leading-snug text-slate-900 md:text-base">{t.preparationMode} — {translateBreadName(selectedBread, language)}</h2>
               <button
                 type="button"
                 onClick={() => setShowInstructions(false)}
