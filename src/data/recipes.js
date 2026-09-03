@@ -1,6 +1,8 @@
+import { normalizeRecipes } from '../domain/calculations';
+
 const imageBase = `${import.meta.env.BASE_URL}images/breads/`;
 
-export const recipes = [
+const baseRecipes = [
   {
     id: 'pao-frances',
     name: 'Pão Francês',
@@ -361,3 +363,5 @@ export const recipes = [
     ],
   },
 ];
+
+export const recipes = normalizeRecipes(baseRecipes);

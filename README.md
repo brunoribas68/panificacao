@@ -98,25 +98,26 @@ docker run --rm -p 5173:5173 panificacao-app
 - `npm run dev` → inicia ambiente de desenvolvimento
 - `npm run build` → gera build de produção
 - `npm run preview` → visualiza build localmente
+- `npm run test` → executa testes unitários das regras de cálculo
+- `npm run check` → executa testes + build (validação rápida para CI)
 
 ## 📂 Estrutura de pastas
 
 ```text
 src/
-  components/
-    BreadCard.jsx
-    BreadMenu.jsx
-    Calculator.jsx
-    RecipePanel.jsx
+  domain/
+    calculations.js
+    calculations.test.js
+  utils/
+    numberInput.js
+    numberInput.test.js
   data/
     recipes.js
   i18n/
     translations.js
   pages/
-    Home.jsx
     HomePage.jsx
     FichaTecnicaPage.jsx
-    CalculatorPage.jsx
   App.jsx
 public/
   images/
