@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+  clampGrams,
+  MAX_GRAMS_INPUT,
+  parseNonNegativeDecimal,
+  sanitizeDecimalInput,
+} from '../utils/numberInput';
 
 const BREAD_WEIGHT = 300;
 const SAL_PCT = 2;
@@ -67,8 +73,8 @@ function FichaTecnicaPage() {
   const [erro, setErro] = useState('');
 
   const handleCalcular = () => {
-    const branca = Number(farinhaBrancaInput) || 0;
-    const integral = Number(farinhaIntegralInput) || 0;
+    const branca = parseNonNegativeDecimal(farinhaBrancaInput) || 0;
+    const integral = parseNonNegativeDecimal(farinhaIntegralInput) || 0;
 
     if (branca === 0 && integral === 0) {
       setErro('Informe ao menos uma quantidade de farinha para calcular.');
@@ -81,10 +87,26 @@ function FichaTecnicaPage() {
   };
 
   const handleInput = (setter) => (e) => {
-    const val = e.target.value.replace(/\D/g, '');
+    const val = sanitizeDecimalInput(e.target.value);
     setter(val);
     setResultado(null);
     setErro('');
+  };
+
+  const applyMax = (field) => {
+    if (field === 'branca') {
+      const value = parseNonNegativeDecimal(farinhaBrancaInput);
+      if (value != null && value > MAX_GRAMS_INPUT) {
+        setFarinhaBrancaInput(String(clampGrams(value)));
+      }
+    }
+
+    if (field === 'integral') {
+      const value = parseNonNegativeDecimal(farinhaIntegralInput);
+      if (value != null && value > MAX_GRAMS_INPUT) {
+        setFarinhaIntegralInput(String(clampGrams(value)));
+      }
+    }
   };
 
   return (
@@ -109,9 +131,10 @@ function FichaTecnicaPage() {
               <span className="text-sm font-medium text-slate-700">Farinha de trigo branca (g)</span>
               <input
                 type="text"
-                inputMode="numeric"
+                inputMode="decimal"
                 value={farinhaBrancaInput}
                 onChange={handleInput(setFarinhaBrancaInput)}
+                onBlur={() => applyMax('branca')}
                 placeholder="Ex: 600"
                 className="input-glass"
               />
@@ -121,14 +144,17 @@ function FichaTecnicaPage() {
               <span className="text-sm font-medium text-slate-700">Farinha integral (g)</span>
               <input
                 type="text"
-                inputMode="numeric"
+                inputMode="decimal"
                 value={farinhaIntegralInput}
                 onChange={handleInput(setFarinhaIntegralInput)}
+                onBlur={() => applyMax('integral')}
                 placeholder="Ex: 400"
                 className="input-glass"
               />
             </label>
           </div>
+
+          <p className="mt-3 text-xs text-slate-400">Valor máximo recomendado por campo: {MAX_GRAMS_INPUT} g.</p>
 
           {erro && (
             <p className="mt-3 rounded-xl border border-red-200 bg-red-50/70 px-3 py-2 text-sm text-red-700">{erro}</p>
